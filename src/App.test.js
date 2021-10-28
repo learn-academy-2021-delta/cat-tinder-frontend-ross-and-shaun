@@ -28,8 +28,6 @@ describe('When the app renders', ()=>{
     const renderedApp = shallow(<App/>)
 
     const renderedHomeRoute = renderedApp.find('[path="/"]')
-
-    // console.log("props", renderedHomeRoute.props())
     
     expect(renderedHomeRoute.props().component).toEqual(Home)
   })

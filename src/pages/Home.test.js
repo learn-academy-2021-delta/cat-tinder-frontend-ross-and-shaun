@@ -13,10 +13,4 @@ describe('When Home loads...',()=>{
 
         expect(navLinkWrapper.length).toEqual(3)
     })
-//     it('provides a link to the local ASPCA',()=>{
-//         const headerWrapper = shallow(<Home/>)
-//         const aTagWrapper = headerWrapper.find('[id="aspca"]')
-//         console.log(aTagWrapper.debug())
-//         expect(aTagWrapper.length).toEqual(1)
-//     })
 })
