@@ -5,6 +5,7 @@ import App from './App'
 import Home from './pages/Home'
 import CatIndex from './pages/CatIndex'
 import Header from './components/Header'
+import cats from './mockCats.js'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -12,30 +13,20 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('When the app renders', ()=>{
   it('displays a header and footer', ()=>{
-
     const renderedApp = shallow(<App/>)
-
     const renderedHeader = renderedApp.find("Header")
-
     const renderedFooter = renderedApp.find("Footer")
-    
     expect(renderedHeader.length).toEqual(1)
-
     expect(renderedFooter.length).toEqual(1)
   })
   it('provides a route "/" to the home component', ()=>{
-    
     const renderedApp = shallow(<App/>)
-
     const renderedHomeRoute = renderedApp.find('[path="/"]')
-    
     expect(renderedHomeRoute.props().component).toEqual(Home)
   })
   it('provides a route "/catindex" to the CatIndex component', ()=>{
-    
     const renderedApp = shallow(<App/>)
-
     const renderedCatIndexRoute = renderedApp.find('[path="/catindex"]')
-    expect(renderedCatIndexRoute.props().component).toEqual(CatIndex)
+    expect(renderedCatIndexRoute.props().render()).toEqual(<CatIndex cats={cats} />)
   })
 })

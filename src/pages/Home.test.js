@@ -7,10 +7,8 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('When Home loads...',()=>{
     it('displays three NavLinks', ()=>{
-        const headerWrapper = shallow(<Home/>)
-
-        const navLinkWrapper = headerWrapper.find("NavLink")
-
-        expect(navLinkWrapper.length).toEqual(3)
+        const home = shallow(<Home />)
+        const indexHeading = home.find("h3")
+        expect(indexHeading.text()).toEqual("I am the Home")
     })
 })

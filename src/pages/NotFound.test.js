@@ -7,10 +7,8 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('When NotFound loads...',()=>{
     it('displays three NavLinks', ()=>{
-        const headerWrapper = shallow(<NotFound/>)
-
-        const navLinkWrapper = headerWrapper.find("NavLink")
-
-        expect(navLinkWrapper.length).toEqual(3)
+        const notFound = shallow(<NotFound/>)
+        const indexHeading = notFound.find("h3")
+        expect(indexHeading.text()).toEqual("Ooops, no cats here!")
     })
 })
