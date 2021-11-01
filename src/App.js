@@ -50,8 +50,10 @@ createNewCat = (newcat) => {
               return <CatShow cat={cat} />
             }}
            />
-          <Route path="/catnew" 
-            render={(props) => <CatNew createNewCat={this.createNewCat} />} />
+          <Route 
+            path="/catnew" 
+            render={(props) => <CatNew 
+            createNewCat={this.createNewCat} />} />
           <Route path="/catedit" component={CatEdit}/>
           <Route component={NotFound} />
         </Switch>

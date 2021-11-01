@@ -9,8 +9,6 @@ import cats from './mockCats.js'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-Enzyme.configure({ adapter: new Adapter() })
-
 describe('When the app renders', ()=>{
   it('displays a header and footer', ()=>{
     const renderedApp = shallow(<App/>)

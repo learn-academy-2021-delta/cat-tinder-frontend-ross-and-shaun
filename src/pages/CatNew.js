@@ -26,9 +26,7 @@ class CatNew extends Component {
     this.setState({submitted: true})
   }
 
-
   render() {
-    console.log(this.state.form)
     return (
       <>
         <h3>Add a new ThunderCat</h3>
@@ -67,8 +65,8 @@ class CatNew extends Component {
             />
           </FormGroup>
           <Button
-            name="submit"
             onClick = {this.handleSubmit}
+            name="submit"
           >
             Create New ThunderCat
           </Button>
