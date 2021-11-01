@@ -22,9 +22,13 @@ class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      cats: cats
+      cats: cats,
     }
   }
+
+createNewCat = (newcat) => {
+  console.log(newcat)
+}
 
   render() {
 
@@ -42,10 +46,14 @@ class App extends Component{
             render={(props) => {
               let id = props.match.params.id
               let cat = this.state.cats.find(value => value.id === parseInt(id))
+              console.log(cat)
               return <CatShow cat={cat} />
             }}
            />
-          <Route path="/catnew" component={CatNew} />
+          <Route 
+            path="/catnew" 
+            render={(props) => <CatNew 
+            createNewCat={this.createNewCat} />} />
           <Route path="/catedit" component={CatEdit}/>
           <Route component={NotFound} />
         </Switch>
