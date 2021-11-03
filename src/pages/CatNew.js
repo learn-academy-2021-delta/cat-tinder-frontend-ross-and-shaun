@@ -44,7 +44,7 @@ class CatNew extends Component {
           </FormGroup>
           <FormGroup>
             <Label for="age">
-              Cat's Age
+              ThunderCat's Age
             </Label>
             <Input
               name="age"
@@ -55,7 +55,7 @@ class CatNew extends Component {
           </FormGroup>
           <FormGroup>
             <Label for="enjoys">
-              Cat's Hobbies and Enjoyment
+              ThunderCat's Hobbies and Enjoyment
             </Label>
             <Input
               name="enjoys"

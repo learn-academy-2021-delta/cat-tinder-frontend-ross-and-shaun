@@ -22,12 +22,57 @@ class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      cats: cats,
+      cats: [],
     }
   }
 
-createNewCat = (newcat) => {
-  console.log(newcat)
+componentDidMount(){
+  this.readCat()
+}
+
+readCat = () => {
+  fetch("http://localhost:3000/cats")
+  .then(response => response.json())
+  .then(catsArray => this.setState({cats: catsArray}))
+  .catch(errors => console.log("Cat read errors:", errors))
+}
+
+createNewCat = (newCat) => {
+  fetch("http://localhost:3000/cats", {
+    body: JSON.stringify(newCat),
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    method: "POST"
+  })
+  .then(response => response.json())
+  .then(payload => this.readCat())
+  .catch(errors => (console.log(errors)))
+}
+
+updateCat = (editedCat, id) => {
+  fetch(`http://localhost:3000/cats/${id}`,{
+    body: JSON.stringify(editedCat),
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    method: "PATCH"
+  })
+  .then(response => response.json())
+  .then(payload => this.readCat())
+  .catch(errors => (console.log(errors)))
+}
+
+deleteCat = (id) => {
+  fetch(`http://localhost:3000/cats/${id}`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method: "DELETE"
+  })
+  .then(response => response.json())
+  .then(payload => this.readCat())
+  .catch(errors => console.log("delete errors:", errors))
 }
 
   render() {
@@ -47,14 +92,21 @@ createNewCat = (newcat) => {
               let id = props.match.params.id
               let cat = this.state.cats.find(value => value.id === parseInt(id))
               console.log(cat)
-              return <CatShow cat={cat} />
+              return <CatShow cat={cat} deleteCat={this.deleteCat}/>
             }}
            />
           <Route 
             path="/catnew" 
             render={(props) => <CatNew 
             createNewCat={this.createNewCat} />} />
-          <Route path="/catedit" component={CatEdit}/>
+             <Route
+              path="/catedit/:id"
+              render={(props) => {
+                let id = props.match.params.id
+                let cat = this.state.cats.find(c => c.id === +id)
+                return <CatEdit cat={cat} updateCat={this.updateCat } id={id} />
+              }}
+            />
           <Route component={NotFound} />
         </Switch>
         <Footer />
